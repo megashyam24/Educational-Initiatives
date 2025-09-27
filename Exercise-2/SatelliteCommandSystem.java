@@ -1,4 +1,11 @@
 import java.util.*;
+interface Observer {
+    void update(String message);
+}
+interface Command {
+    void execute();
+    void undo();
+}
 class Satellite {
     private String dir;
     private boolean panelOn;
@@ -62,17 +69,11 @@ class Satellite {
     public void setPanelOn(boolean on) { this.panelOn = on; }
     public void setDataCollected(int data) { this.dataCollected = data; }
 }
-interface Observer {
-    void update(String message);
-}
+
 class Status implements Observer {
     public void update(String message) {
         System.out.println("Message: " + message);
     }
-}
-interface Command {
-    void execute();
-    void undo();
 }
 class RotateCommand implements Command {
     private Satellite satellite;
